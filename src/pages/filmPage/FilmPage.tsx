@@ -1,13 +1,7 @@
 import FilmCard, {FilmProps} from '../../components/filmCard/FilmCard';
-import Catalog from '../../components/catalog/Catalog';
 import Footer from '../../components/footer/Footer';
-
-const filmCardInfo: FilmProps[] = [
-  {srcCard: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg', filmName: 'Fantastic Beasts: The Crimes of Grindelwald'},
-  {srcCard: 'img/bohemian-rhapsody.jpg', filmName: 'Bohemian Rhapsody'},
-  {srcCard: 'img/macbeth.jpg', filmName: 'Macbeth'},
-  {srcCard: 'img/aviator.jpg', filmName: 'Aviator'},
-];
+import {filmCardInfoForFilmPage} from '../../mocData';
+import {AppRoute} from '../../const';
 
 function FilmPage() {
   return (
@@ -22,7 +16,7 @@ function FilmPage() {
 
           <header className="page-header film-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <a href={AppRoute.Main} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
@@ -63,7 +57,7 @@ function FilmPage() {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+                <a href={AppRoute.AddReview} className="btn film-card__button">Add review</a>
               </div>
             </div>
           </div>
@@ -121,13 +115,11 @@ function FilmPage() {
       </section>
 
       <div className="page-content">
-        <Catalog title="More like this" filmCardInfo={filmCardInfo}/>
-
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            {filmCardInfo.map(({srcCard, filmName}: FilmProps) => (
+            {filmCardInfoForFilmPage.map(({srcCard, filmName}: FilmProps) => (
               <FilmCard key={filmName} srcCard={srcCard} filmName={filmName}/>
             ))}
           </div>

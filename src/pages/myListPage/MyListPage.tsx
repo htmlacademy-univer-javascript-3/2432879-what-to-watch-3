@@ -1,25 +1,14 @@
-import {FilmProps} from '../../components/filmCard/FilmCard';
 import Catalog from '../../components/catalog/Catalog';
 import Footer from '../../components/footer/Footer';
-
-const filmCardInfo: FilmProps[] = [
-  {srcCard: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg', filmName: 'Fantastic Beasts: The Crimes of Grindelwald'},
-  {srcCard: 'img/bohemian-rhapsody.jpg', filmName: 'Bohemian Rhapsody'},
-  {srcCard: 'img/macbeth.jpg', filmName: 'Macbeth'},
-  {srcCard: 'img/aviator.jpg', filmName: 'Aviator'},
-  {srcCard: 'img/we-need-to-talk-about-kevin.jpg', filmName: 'We need to talk about Kevin'},
-  {srcCard: 'img/what-we-do-in-the-shadows.jpg', filmName: 'What we do in the shadows'},
-  {srcCard: 'img/revenant.jpg', filmName: 'Revenant'},
-  {srcCard: 'img/johnny-english.jpg', filmName: 'Johnny English'},
-  {srcCard: 'img/shutter-island.jpg', filmName: 'Shutter Island'},
-];
+import {filmCardInfoForMyListPage} from '../../mocData';
+import {AppRoute} from '../../const';
 
 function MyListPage() {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
         <div className="logo">
-          <a href="main.html" className="logo__link">
+          <a href={AppRoute.Main} className="logo__link">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
@@ -39,7 +28,7 @@ function MyListPage() {
         </ul>
       </header>
 
-      <Catalog title="Catalog" filmCardInfo={filmCardInfo} extraTitleStyle="visually-hidden"/>
+      <Catalog title="Catalog" filmCardInfo={filmCardInfoForMyListPage} extraTitleStyle="visually-hidden"/>
       <Footer/>
     </div>
   );
