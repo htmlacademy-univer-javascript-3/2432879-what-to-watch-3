@@ -1,7 +1,8 @@
-import FilmCard, {FilmProps} from '../../components/filmCard/FilmCard';
 import Footer from '../../components/footer/Footer';
-import {filmCardInfoForFilmPage} from '../../mocData';
 import {AppRoute} from '../../const';
+import {Link} from 'react-router-dom';
+import FilmsList from '../../components/filmsList/FilmsList';
+import {films} from '../../mocks/films';
 
 function FilmPage() {
   return (
@@ -16,11 +17,11 @@ function FilmPage() {
 
           <header className="page-header film-card__head">
             <div className="logo">
-              <a href={AppRoute.Main} className="logo__link">
+              <Link to={AppRoute.Main} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <ul className="user-block">
@@ -30,7 +31,7 @@ function FilmPage() {
                 </div>
               </li>
               <li className="user-block__item">
-                <a className="user-block__link">Sign out</a>
+                <Link to="#" className="user-block__link">Sign out</Link>
               </li>
             </ul>
           </header>
@@ -57,7 +58,7 @@ function FilmPage() {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <a href={AppRoute.AddReview} className="btn film-card__button">Add review</a>
+                <Link to={AppRoute.AddReview} className="btn film-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -75,13 +76,13 @@ function FilmPage() {
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">Overview</a>
+                    <Link to="#" className="film-nav__link">Overview</Link>
                   </li>
                   <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Details</a>
+                    <Link to="#" className="film-nav__link">Details</Link>
                   </li>
                   <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Reviews</a>
+                    <Link to="#" className="film-nav__link">Reviews</Link>
                   </li>
                 </ul>
               </nav>
@@ -117,12 +118,7 @@ function FilmPage() {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
-          <div className="catalog__films-list">
-            {filmCardInfoForFilmPage.map(({srcCard, filmName}: FilmProps) => (
-              <FilmCard key={filmName} srcCard={srcCard} filmName={filmName}/>
-            ))}
-          </div>
+          <FilmsList films={films}/>
         </section>
 
         <Footer/>
