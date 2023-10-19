@@ -1,14 +1,17 @@
-import FilmCard, {FilmProps} from '../../components/filmCard/FilmCard';
 import Footer from '../../components/footer/Footer';
-import {filmCardInfoForWelcomePage} from '../../mocData';
+import {Film} from '../../types/films';
+import FilmsList from '../../components/filmsList/FilmsList';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../const';
 
 type WelcomePageProps = {
   promoFilmName: string;
   promoFilmGenre: string;
   promoFilmDate: string;
+  films: Film[];
 }
 
-function WelcomePage({promoFilmName, promoFilmGenre, promoFilmDate}: WelcomePageProps) {
+function WelcomePage({promoFilmName, promoFilmGenre, promoFilmDate, films}: WelcomePageProps) {
   return (
     <div>
       <section className="film-card">
@@ -20,11 +23,11 @@ function WelcomePage({promoFilmName, promoFilmGenre, promoFilmDate}: WelcomePage
 
         <header className="page-header film-card__head">
           <div className="logo">
-            <a className="logo__link">
+            <Link to={AppRoute.Main} className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <ul className="user-block">
@@ -34,7 +37,7 @@ function WelcomePage({promoFilmName, promoFilmGenre, promoFilmDate}: WelcomePage
               </div>
             </li>
             <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
+              <Link to={AppRoute.SignIn} className="user-block__link">Sign out</Link>
             </li>
           </ul>
         </header>
@@ -78,42 +81,38 @@ function WelcomePage({promoFilmName, promoFilmGenre, promoFilmDate}: WelcomePage
 
           <ul className="catalog__genres-list">
             <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
+              <Link to="#" className="catalog__genres-link">All genres</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
+              <Link to="#" className="catalog__genres-link">Comedies</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
+              <Link to="#" className="catalog__genres-link">Crime</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
+              <Link to="#" className="catalog__genres-link">Documentary</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
+              <Link to="#" className="catalog__genres-link">Dramas</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
+              <Link to="#" className="catalog__genres-link">Horror</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
+              <Link to="#" className="catalog__genres-link">Kids & Family</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
+              <Link to="#" className="catalog__genres-link">Romance</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
+              <Link to="#" className="catalog__genres-link">Sci-Fi</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
+              <Link to="#" className="catalog__genres-link">Thrillers</Link>
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            {filmCardInfoForWelcomePage.map(({srcCard, filmName}: FilmProps) => (
-              <FilmCard key={filmName} srcCard={srcCard} filmName={filmName}/>
-            ))}
-          </div>
+          <FilmsList films={films}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
