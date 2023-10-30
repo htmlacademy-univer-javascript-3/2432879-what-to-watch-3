@@ -1,14 +1,14 @@
-import {Currentfilm, Film} from '../types/films';
+import {Currentfilm, Film, FilmInfo, PromoFilm} from '../types/films';
 
 export const films: Film[] = [
-  {id: '1', srcCard: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg', filmName: 'Fantastic Beasts: The Crimes of Grindelwald'},
-  {id: '2', srcCard: 'img/bohemian-rhapsody.jpg', filmName: 'Bohemian Rhapsody'},
-  {id: '3', srcCard: 'img/macbeth.jpg', filmName: 'Macbeth'},
-  {id: '4', srcCard: 'img/aviator.jpg', filmName: 'Aviator'},
-  {id: '5', srcCard: 'img/we-need-to-talk-about-kevin.jpg', filmName: 'We need to talk about Kevin'},
-  {id: '6', srcCard: 'img/what-we-do-in-the-shadows.jpg', filmName: 'What we do in the shadows'},
-  {id: '7', srcCard: 'img/revenant.jpg', filmName: 'Revenant'},
-  {id: '8', srcCard: 'img/johnny-english.jpg', filmName: 'Johnny English'},
+  {id: '1', srcCard: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg', filmName: 'Fantastic Beasts: The Crimes of Grindelwald', previewVideoLink: '../../public/video/videoExample.mp4'},
+  {id: '2', srcCard: 'img/bohemian-rhapsody.jpg', filmName: 'Bohemian Rhapsody', previewVideoLink: '../../public/video/videoExample.mp4'},
+  {id: '3', srcCard: 'img/macbeth.jpg', filmName: 'Macbeth', previewVideoLink: '../../public/video/videoExample.mp4'},
+  {id: '4', srcCard: 'img/aviator.jpg', filmName: 'Aviator', previewVideoLink: '../../public/video/videoExample.mp4'},
+  {id: '5', srcCard: 'img/we-need-to-talk-about-kevin.jpg', filmName: 'We need to talk about Kevin', previewVideoLink: '../../public/video/videoExample.mp4'},
+  {id: '6', srcCard: 'img/what-we-do-in-the-shadows.jpg', filmName: 'What we do in the shadows', previewVideoLink: '../../public/video/videoExample.mp4'},
+  {id: '7', srcCard: 'img/revenant.jpg', filmName: 'Revenant', previewVideoLink: '../../public/video/videoExample.mp4'},
+  {id: '8', srcCard: 'img/johnny-english.jpg', filmName: 'Johnny English', previewVideoLink: '../../public/video/videoExample.mp4'},
 ];
 
 export const currentFilm: Currentfilm = {
@@ -19,10 +19,36 @@ export const currentFilm: Currentfilm = {
   time: '1:30:29'
 };
 
-export const FilmInfoMain = {
-  promoFilmName: 'The Grand Budapest Hotel',
-  promoFilmGenre: 'Drama',
-  promoFilmDate: '2014',
+export const promoFilmInfo: PromoFilm = {
+  id: 'aba664c3-bdf3-4fb3-b8f3-42e007864bbf',
+  name: 'The Grand Budapest Hotel',
+  posterImage: 'markup/img/the-grand-budapest-hotel-poster.jpg',
+  backgroundImage: 'markup/img/bg-the-grand-budapest-hotel.jpg',
+  videoLink: '#',
+  genre: 'Drama',
+  released: 2014,
+  isFavorite: false
 } as const;
+
+
+export const filmInfo: FilmInfo = {
+  id: 'aba664c3-bdf3-4fb3-b8f3-42e007864bbf',
+  name: 'The Grand Budapest Hotel',
+  posterImage: 'markup/img/the-grand-budapest-hotel-poster.jpg',
+  backgroundImage: 'markup/img/bg-the-grand-budapest-hotel.jpg',
+  backgroundColor: '#ffffff',
+  videoLink: 'https://url-to-video/video.jpg',
+  description: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave\'s friend and protege.',
+  rating: 8.9,
+  scoresCount: 240,
+  director: 'Wes Anderson',
+  starring: [
+    'Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe',
+  ],
+  runTime: 99,
+  genre: 'Comedy',
+  released: 2014,
+  isFavorite: false,
+};
 
 

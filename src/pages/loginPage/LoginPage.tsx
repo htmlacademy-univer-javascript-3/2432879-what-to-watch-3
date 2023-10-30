@@ -1,21 +1,12 @@
 import Footer from '../../components/footer/Footer';
-import {Link} from 'react-router-dom';
-import {AppRoute} from '../../const';
+import Header from '../../components/header/header';
 
 function LoginPage() {
   return (
     <div className="user-page">
-      <header className="page-header user-page__head">
-        <div className="logo">
-          <Link to={AppRoute.Main} className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
-
+      <Header className={'user-page__head'}>
         <h1 className="page-title user-page__title">Sign in</h1>
-      </header>
+      </Header>
 
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form">

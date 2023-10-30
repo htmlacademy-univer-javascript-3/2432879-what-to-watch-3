@@ -3,6 +3,7 @@ import {AppRoute} from '../../const';
 import CommentSendForm from '../../components/commentSendForm/commentSendForm';
 import {User} from '../../types/user';
 import {Currentfilm} from '../../types/films';
+import Header from '../../components/header/header';
 
 type ReviewPageProps = {
   user: User;
@@ -19,15 +20,7 @@ function ReviewPage({user, currentFilm}: ReviewPageProps) {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header">
-          <div className="logo">
-            <Link to={AppRoute.Main} className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
+        <Header user={user}>
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
@@ -38,18 +31,7 @@ function ReviewPage({user, currentFilm}: ReviewPageProps) {
               </li>
             </ul>
           </nav>
-
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src={user.avatarImg} alt="User avatar" width="63" height="63"/>
-              </div>
-            </li>
-            <li className="user-block__item">
-              <Link to="#" className="user-block__link">Sign out</Link>
-            </li>
-          </ul>
-        </header>
+        </Header>
 
         <div className="film-card__poster film-card__poster--small">
           <img src={currentFilm.backgroundPoster} alt="The Grand Budapest Hotel poster" width="218" height="327"/>
