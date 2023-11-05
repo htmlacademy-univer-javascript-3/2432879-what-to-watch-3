@@ -60,7 +60,6 @@ function FilmPage({films, user, filmInfo}: FilmPageProps) {
                   </li>
                 </ul>
               </nav>
-
               <div className="film-rating">
                 <div className="film-rating__score">{filmInfo.rating}</div>
                 <p className="film-rating__meta">
@@ -68,7 +67,6 @@ function FilmPage({films, user, filmInfo}: FilmPageProps) {
                   <span className="film-rating__count">{filmInfo.scoresCount}</span>
                 </p>
               </div>
-
               <div className="film-card__text">
                 <p>
                   In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend and protege.
