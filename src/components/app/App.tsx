@@ -8,23 +8,22 @@ import Page404 from '../../pages/page404/page404';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import PrivateRoute from '../privateRoute/privateRoute';
 import MyListPage from '../../pages/myListPage/MyListPage';
-import {Currentfilm, Film} from '../../types/films';
+import {Currentfilm, Film, FilmInfo, PromoFilm} from '../../types/films';
 import {User} from '../../types/user';
 
 type AppProps = {
-  promoFilmName: string;
-  promoFilmGenre: string;
-  promoFilmDate: string;
+  filmInfo: FilmInfo;
+  promoFilmInfo: PromoFilm;
   films: Film[];
   user: User;
   currentFilm: Currentfilm;
 }
 
-function App({promoFilmName, promoFilmGenre, promoFilmDate, films, user, currentFilm}: AppProps) {
+function App({filmInfo, promoFilmInfo, films, user, currentFilm}: AppProps) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Main} element={<WelcomePage promoFilmName={promoFilmName} promoFilmGenre={promoFilmGenre} promoFilmDate={promoFilmDate} films={films}/>}/>
+        <Route path={AppRoute.Main} element={<WelcomePage promoFilmInfo={promoFilmInfo} films={films} user={user}/>}/>
         <Route path={AppRoute.SignIn} element={<LoginPage/>}/>
         <Route path={AppRoute.MyList} element={
           <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
@@ -32,7 +31,7 @@ function App({promoFilmName, promoFilmGenre, promoFilmDate, films, user, current
           </PrivateRoute>
         }
         />
-        <Route path={AppRoute.Film} element={<FilmPage/>}/>
+        <Route path={AppRoute.Film} element={<FilmPage films={films} user={user} filmInfo={filmInfo}/>}/>
         <Route path={AppRoute.AddReview} element={<ReviewPage user={user} currentFilm={currentFilm}/>}/>
         <Route path={AppRoute.Player} element={<Player currentFilm={currentFilm}/>}/>
         <Route path="*" element={<Page404/>}/>
