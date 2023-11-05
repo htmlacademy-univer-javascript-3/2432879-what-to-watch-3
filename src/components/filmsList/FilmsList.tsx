@@ -1,6 +1,7 @@
 import {Film} from '../../types/films';
 import FilmCard from '../filmCard/FilmCard';
 import {useEffect, useState} from 'react';
+import * as timers from "timers";
 
 type FilmsListProps = {
   films: Film[];
@@ -21,7 +22,8 @@ function FilmsList({films}: FilmsListProps) {
   };
 
   useEffect(() => {
-    setTimeout(() => setIsPlay(true), 1000);
+    const timeout = setTimeout(() => setIsPlay(true), 1000);
+    return clearTimeout(timeout);
   }, [selectedFilm]);
 
   return (
