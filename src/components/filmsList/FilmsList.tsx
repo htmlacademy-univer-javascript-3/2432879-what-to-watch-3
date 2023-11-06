@@ -1,13 +1,15 @@
 import {Film} from '../../types/films';
 import FilmCard from '../filmCard/FilmCard';
-import {useEffect, useState} from 'react';
-import * as timers from "timers";
+import {useEffect, useRef, useState} from 'react';
 
 type FilmsListProps = {
   films: Film[];
+  quantityFilmsList?: number;
 }
 
-function FilmsList({films}: FilmsListProps) {
+function FilmsList({films, quantityFilmsList}: FilmsListProps) {
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   const [selectedFilm, setSelectedFilm] = useState({
     id: '',
     srcCard: '',
@@ -17,21 +19,28 @@ function FilmsList({films}: FilmsListProps) {
 
   const [isPlay, setIsPlay] = useState(false);
 
-  const selectedFilmHandle = ({id, srcCard, filmName, previewVideoLink}: Film) => {
+  const onMouseEnterHandle = ({id, srcCard, filmName, previewVideoLink}: Film) => {
     setSelectedFilm({...selectedFilm, id: id, srcCard: srcCard, filmName: filmName, previewVideoLink: previewVideoLink});
   };
 
+  const onMouseLeaveEnter = () => {
+    setSelectedFilm({...selectedFilm, id: '', srcCard: '', filmName: '', previewVideoLink: ''});
+    setIsPlay(false);
+  };
+
   useEffect(() => {
-    const timeout = setTimeout(() => setIsPlay(true), 1000);
-    return clearTimeout(timeout);
+    timeoutRef.current = setTimeout(() => {
+      setIsPlay(true);
+    }, 1000);
+    return () => clearTimeout(timeoutRef.current as NodeJS.Timeout);
   }, [selectedFilm]);
 
   return (
     <div className="catalog__films-list">
-      {films.map(({id, srcCard, filmName, previewVideoLink}: Film) => (
+      {films.slice(0, quantityFilmsList).map(({id, srcCard, filmName, previewVideoLink}: Film) => (
         <FilmCard
-          onMouseEnter={() => selectedFilmHandle({id, srcCard, filmName, previewVideoLink})}
-          onMouseLeave={() => setIsPlay(false)}
+          onMouseEnter={() => onMouseEnterHandle({id, srcCard, filmName, previewVideoLink})}
+          onMouseLeave={() => onMouseLeaveEnter()}
           key={filmName}
           id={id}
           srcCard={srcCard}
