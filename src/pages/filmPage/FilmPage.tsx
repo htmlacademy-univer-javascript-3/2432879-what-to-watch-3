@@ -6,7 +6,7 @@ import {User} from '../../types/user';
 import Header from '../../components/header/header';
 import FilmCardButtons from '../../components/buttons/filmCardButton/filmCardButtons';
 import {Film, FilmInfo} from '../../types/films';
-import Tabs from "../../components/tabs/tabs";
+import Tabs from '../../components/tabs/tabs';
 
 type FilmPageProps = {
   filmInfo: FilmInfo;

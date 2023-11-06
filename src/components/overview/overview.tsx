@@ -1,4 +1,4 @@
-import {FilmInfo} from "../../types/films";
+import {FilmInfo} from '../../types/films';
 
 type OverviewProps = {
   filmInfo: FilmInfo;
