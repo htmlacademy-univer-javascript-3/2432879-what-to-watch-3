@@ -1,18 +1,20 @@
 import Footer from '../../components/footer/Footer';
-import {Film, PromoFilm} from '../../types/films';
+import {PromoFilm} from '../../types/films';
 import FilmsList from '../../components/filmsList/FilmsList';
 import {User} from '../../types/user';
 import Header from '../../components/header/header';
 import FilmCardButtons from '../../components/buttons/filmCardButton/filmCardButtons';
 import GenersList from '../../components/genresList/genersList';
+import {useAppSelector} from '../../hooks';
 
 type WelcomePageProps = {
   promoFilmInfo: PromoFilm;
-  films: Film[];
   user: User;
 }
 
-function WelcomePage({promoFilmInfo, films, user}: WelcomePageProps) {
+function WelcomePage({promoFilmInfo, user}: WelcomePageProps) {
+  const films = useAppSelector((state) => state.filmList);
+
   return (
     <div>
       <section className="film-card">

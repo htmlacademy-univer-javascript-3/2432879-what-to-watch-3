@@ -1,4 +1,4 @@
 export type Genre = {
   name: string;
-  link: string;
+  genre: string;
 }
