@@ -3,6 +3,7 @@ export type Film = {
   srcCard: string;
   filmName: string;
   previewVideoLink: string;
+  genre: string;
 }
 
 export type Currentfilm = {

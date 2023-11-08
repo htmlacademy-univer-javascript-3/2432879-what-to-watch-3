@@ -1,13 +1,24 @@
 import {genres} from '../../mocks/genres';
-import {Genre} from '../../types/genres';
 import {Link} from 'react-router-dom';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import cn from 'classnames';
+import {changeGenre, getFilmsList} from '../../store/action';
+import {Genre} from '../../types/genres';
 
 function GenersList() {
+  const genreActive = useAppSelector((state) => state.genreActive);
+  const dispatch = useAppDispatch();
+
+  const genreClickHandle = ({name, genre}: Genre) => {
+    dispatch(changeGenre({name, genre}));
+    dispatch(getFilmsList());
+  };
+
   return (
     <ul className="catalog__genres-list">
-      {genres.map(({name, link}: Genre) => (
-        <li key={name} className='catalog__genres-item'>
-          <Link to={link} className="catalog__genres-link">{name}</Link>
+      {genres.map(({name, genre}: Genre) => (
+        <li onClick={() => genreClickHandle({name, genre})} key={name} className={cn('catalog__genres-item', {'catalog__genres-item--active': name === genreActive.name})}>
+          <Link to='#' className="catalog__genres-link">{name}</Link>
         </li>
       ))}
     </ul>
