@@ -9,6 +9,17 @@ export const films: Film[] = [
   {id: '6', srcCard: 'img/what-we-do-in-the-shadows.jpg', filmName: 'What we do in the shadows', previewVideoLink: '../../public/video/videoExample.mp4', genre: 'Kids & Family'},
   {id: '7', srcCard: 'img/revenant.jpg', filmName: 'Revenant', previewVideoLink: '../../public/video/videoExample.mp4', genre: 'Romance'},
   {id: '8', srcCard: 'img/johnny-english.jpg', filmName: 'Johnny English', previewVideoLink: '../../public/video/videoExample.mp4', genre: 'Thriller'},
+  {id: '9', srcCard: 'img/shutter-island.jpg', filmName: 'Shutter Island', previewVideoLink: '../../public/video/videoExample.mp4', genre: 'Comedy'},
+  {id: '10', srcCard: 'img/pulp-fiction.jpg', filmName: 'Pulp Fiction', previewVideoLink: '../../public/video/videoExample.mp4', genre: 'Crime'},
+  {id: '11', srcCard: 'img/no-country-for-old-men.jpg', filmName: 'No Country for Old Men', previewVideoLink: '../../public/video/videoExample.mp4', genre: 'Documentary'},
+  {id: '12', srcCard: 'img/snatch.jpg', filmName: 'Snatch', previewVideoLink: '../../public/video/videoExample.mp4', genre: 'Drama'},
+  {id: '13', srcCard: 'img/moonrise-kingdom.jpg', filmName: 'Moonrise Kingdom', previewVideoLink: '../../public/video/videoExample.mp4', genre: 'Horror'},
+  {id: '14', srcCard: 'img/seven-years-in-tibet.jpg', filmName: 'Seven Years in Tibet', previewVideoLink: '../../public/video/videoExample.mp4', genre: 'Kids & Family'},
+  {id: '15', srcCard: 'img/war-of-the-worlds.jpg', filmName: 'War of the Worlds', previewVideoLink: '../../public/video/videoExample.mp4', genre: 'Romance'},
+  {id: '16', srcCard: 'img/dardjeeling-limited.jpg', filmName: 'Dardjeeling Limited', previewVideoLink: '../../public/video/videoExample.mp4', genre: 'Thriller'},
+  {id: '17', srcCard: 'img/orlando.jpg', filmName: 'Orlando', previewVideoLink: '../../public/video/videoExample.mp4', genre: 'Thriller'},
+  {id: '18', srcCard: 'img/mindhunter.jpg', filmName: 'Mindhunter', previewVideoLink: '../../public/video/videoExample.mp4', genre: 'Thriller'},
+  {id: '19', srcCard: 'img/midnight-special.jpg', filmName: 'Midnight Special', previewVideoLink: '../../public/video/videoExample.mp4', genre: 'Thriller'},
 ];
 
 export const comediesFilms: Film[] = [
