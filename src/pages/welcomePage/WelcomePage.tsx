@@ -5,7 +5,11 @@ import {User} from '../../types/user';
 import Header from '../../components/header/header';
 import FilmCardButtons from '../../components/buttons/filmCardButton/filmCardButtons';
 import GenersList from '../../components/genresList/genersList';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import ShowMoreButton from '../../components/showMoreButton';
+import {useEffect} from 'react';
+import {resetShownFilms} from '../../store/action';
+import {useLocation} from 'react-router-dom';
 
 type WelcomePageProps = {
   promoFilmInfo: PromoFilm;
@@ -13,7 +17,14 @@ type WelcomePageProps = {
 }
 
 function WelcomePage({promoFilmInfo, user}: WelcomePageProps) {
-  const films = useAppSelector((state) => state.filmList);
+  const films = useAppSelector((state) => state.filmsList);
+  const shownFilms = useAppSelector((state) => state.shownFilms);
+  const dispatch = useAppDispatch();
+  const location = useLocation();
+
+  useEffect(() => {
+    dispatch(resetShownFilms());
+  }, [dispatch, location]);
 
   return (
     <div>
@@ -51,11 +62,9 @@ function WelcomePage({promoFilmInfo, user}: WelcomePageProps) {
 
           <GenersList/>
 
-          <FilmsList films={films}/>
+          <FilmsList quantityFilmsList={shownFilms} films={films}/>
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <ShowMoreButton/>
         </section>
 
         <Footer/>
