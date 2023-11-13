@@ -5,6 +5,9 @@ import {currentFilm, promoFilmInfo, films, filmInfo} from './mocks/films';
 import {user} from './mocks/user';
 import {Provider} from 'react-redux';
 import {store} from './store';
+import {fetchFilmsListAction} from './store/apiActions';
+
+store.dispatch(fetchFilmsListAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
