@@ -1,8 +1,12 @@
 import {useAppDispatch, useAppSelector} from '../hooks';
 import {showMoreFilms} from '../store/action';
+import {Film} from '../types/films';
 
-function ShowMoreButton() {
-  const films = useAppSelector((state) => state.filmsList);
+type ShowMoreButtonProps = {
+  films: Film[];
+}
+
+function ShowMoreButton({films}: ShowMoreButtonProps) {
   const shownFilms = useAppSelector((state) => state.shownFilms);
   const dispatch = useAppDispatch();
   const showMoreFilmsHandle = () => {

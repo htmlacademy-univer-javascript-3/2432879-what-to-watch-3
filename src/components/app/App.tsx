@@ -23,7 +23,7 @@ function App({filmInfo, promoFilmInfo, films, user, currentFilm}: AppProps) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Main} element={<WelcomePage promoFilmInfo={promoFilmInfo} films={films} user={user}/>}/>
+        <Route path={AppRoute.Main} element={<WelcomePage promoFilmInfo={promoFilmInfo} user={user}/>}/>
         <Route path={AppRoute.SignIn} element={<LoginPage/>}/>
         <Route path={AppRoute.MyList} element={
           <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>

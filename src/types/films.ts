@@ -1,7 +1,7 @@
 export type Film = {
   id: string;
-  srcCard: string;
-  filmName: string;
+  name: string;
+  previewImage: string;
   previewVideoLink: string;
   genre: string;
 }
