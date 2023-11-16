@@ -1,5 +1,4 @@
 import {Currentfilm} from '../../types/films';
-import video from '../../../public/video/videoExample.mp4';
 
 type PlayerProps = {
   currentFilm: Currentfilm;
@@ -8,7 +7,7 @@ type PlayerProps = {
 function Player({currentFilm}: PlayerProps) {
   return (
     <div className="player">
-      <video autoPlay src={video} className="player__video" poster={currentFilm.playerPoster}></video>
+      <video autoPlay src={'video'} className="player__video" poster={currentFilm.playerPoster}></video>
 
       <button type="button" className="player__exit">Exit</button>
 

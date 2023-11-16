@@ -12,3 +12,10 @@ export enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN'
 }
+
+export const APIRoute = {
+  Films: '/films',
+  Login: '/login',
+  Logout: '/logout',
+};
+

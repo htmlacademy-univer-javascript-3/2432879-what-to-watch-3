@@ -8,8 +8,10 @@ import GenersList from '../../components/genresList/genersList';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import ShowMoreButton from '../../components/showMoreButton';
 import {useEffect} from 'react';
-import {resetShownFilms} from '../../store/action';
+import { resetShownFilms} from '../../store/action';
 import {useLocation} from 'react-router-dom';
+import {filmsByGenre} from '../../utils/filmsByGenre';
+import Spinner from '../../components/spinner/spinner';
 
 type WelcomePageProps = {
   promoFilmInfo: PromoFilm;
@@ -18,6 +20,7 @@ type WelcomePageProps = {
 
 function WelcomePage({promoFilmInfo, user}: WelcomePageProps) {
   const films = useAppSelector((state) => state.filmsList);
+  const genreActive = useAppSelector((state) => state.genre);
   const shownFilms = useAppSelector((state) => state.shownFilms);
   const dispatch = useAppDispatch();
   const location = useLocation();
@@ -62,9 +65,9 @@ function WelcomePage({promoFilmInfo, user}: WelcomePageProps) {
 
           <GenersList/>
 
-          <FilmsList quantityFilmsList={shownFilms} films={films}/>
+          {films ? <FilmsList quantityFilmsList={shownFilms} films={filmsByGenre(films, genreActive)}/> : <Spinner/>}
 
-          <ShowMoreButton/>
+          <ShowMoreButton films={filmsByGenre(films, genreActive)}/>
         </section>
 
         <Footer/>

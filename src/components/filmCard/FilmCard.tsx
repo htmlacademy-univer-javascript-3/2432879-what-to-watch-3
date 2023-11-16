@@ -3,8 +3,8 @@ import VideoPlayer from '../videoPlayer/videoPlayer';
 
 type FilmProps = {
   id: string;
-  srcCard: string;
-  filmName: string;
+  previewImage: string;
+  name: string;
   onMouseEnter: () => void;
   previewVideoLink: string;
   isPlay: boolean;
@@ -12,15 +12,15 @@ type FilmProps = {
   onMouseLeave: () => void;
 }
 
-function FilmCard({id, srcCard, filmName, onMouseEnter, onMouseLeave, previewVideoLink, isPlay, selectedCard}: FilmProps): JSX.Element {
+function FilmCard({id, previewImage, name, onMouseEnter, onMouseLeave, previewVideoLink, isPlay, selectedCard}: FilmProps): JSX.Element {
   return (
     <article onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
-        {isPlay && id === selectedCard ? <VideoPlayer previewVideoLink={previewVideoLink} poster={srcCard}/> : <img src={srcCard} alt={filmName} width="280" height="175"/>}
+        {isPlay && id === selectedCard ? <VideoPlayer previewVideoLink={previewVideoLink} poster={previewImage}/> : <img src={previewImage} alt={name} width="280" height="175"/>}
       </div>
       <h3 className="small-film-card__title">
         <Link to={`/films/${id}`} className="small-film-card__link">
-          {filmName}
+          {name}
         </Link>
       </h3>
     </article>
