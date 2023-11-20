@@ -18,7 +18,7 @@ function LoginPage() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (emailRef.current !== null && passwordRef.current !== null) {
+    if (emailRef.current?.value && passwordRef.current?.value) {
       onSubmit({
         email: emailRef.current.value,
         password: passwordRef.current.value,
