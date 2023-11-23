@@ -8,7 +8,7 @@ import GenersList from '../../components/genresList/genersList';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import ShowMoreButton from '../../components/showMoreButton';
 import {useEffect} from 'react';
-import {resetShownFilms} from '../../store/action';
+import { resetShownFilms} from '../../store/action';
 import {useLocation} from 'react-router-dom';
 import {filmsByGenre} from '../../utils/filmsByGenre';
 import Spinner from '../../components/spinner/spinner';
