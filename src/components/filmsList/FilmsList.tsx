@@ -12,20 +12,20 @@ function FilmsList({films, quantityFilmsList}: FilmsListProps) {
 
   const [selectedFilm, setSelectedFilm] = useState({
     id: '',
-    srcCard: '',
-    filmName: '',
+    name: '',
+    previewImage: '',
     previewVideoLink: '',
-    genreActive: ''
+    genre: ''
   });
 
   const [isPlay, setIsPlay] = useState(false);
 
-  const onMouseEnterHandle = ({id, srcCard, filmName, previewVideoLink, genre}: Film) => {
-    setSelectedFilm({...selectedFilm, id: id, srcCard: srcCard, filmName: filmName, previewVideoLink: previewVideoLink, genreActive: genre});
+  const onMouseEnterHandle = ({id, previewImage, name, previewVideoLink, genre}: Film) => {
+    setSelectedFilm({...selectedFilm, id: id, name: name, previewImage: previewImage, previewVideoLink: previewVideoLink, genre: genre});
   };
 
   const onMouseLeaveEnter = () => {
-    setSelectedFilm({...selectedFilm, id: '', srcCard: '', filmName: '', previewVideoLink: '', genreActive: ''});
+    setSelectedFilm({...selectedFilm, id: '', name: '', previewImage: '', previewVideoLink: '', genre: ''});
     setIsPlay(false);
   };
 
@@ -38,14 +38,14 @@ function FilmsList({films, quantityFilmsList}: FilmsListProps) {
 
   return (
     <div className="catalog__films-list">
-      {films.slice(0, quantityFilmsList).map(({id, srcCard, filmName, previewVideoLink, genre}: Film) => (
+      {films.slice(0, quantityFilmsList).map(({id, previewImage, name, previewVideoLink, genre}: Film) => (
         <FilmCard
-          onMouseEnter={() => onMouseEnterHandle({id, srcCard, filmName, previewVideoLink, genre})}
+          onMouseEnter={() => onMouseEnterHandle({id, name: name, previewImage: previewImage, previewVideoLink: previewVideoLink, genre: genre})}
           onMouseLeave={() => onMouseLeaveEnter()}
-          key={filmName}
+          key={name}
           id={id}
-          srcCard={srcCard}
-          filmName={filmName}
+          name={name}
+          previewImage={previewImage}
           previewVideoLink={previewVideoLink}
           isPlay={isPlay}
           selectedCard={selectedFilm.id}

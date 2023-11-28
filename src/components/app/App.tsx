@@ -1,15 +1,17 @@
 import WelcomePage from '../../pages/welcomePage/WelcomePage';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import FilmPage from '../../pages/filmPage/FilmPage';
 import LoginPage from '../../pages/loginPage/LoginPage';
 import Player from '../../pages/player/Player';
 import ReviewPage from '../../pages/reviewPage/reviewPage';
 import Page404 from '../../pages/page404/page404';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute} from '../../const';
 import PrivateRoute from '../privateRoute/privateRoute';
 import MyListPage from '../../pages/myListPage/MyListPage';
 import {Currentfilm, Film, FilmInfo, PromoFilm} from '../../types/films';
 import {User} from '../../types/user';
+import HistoryRouter from '../historyRoute/historyRouter';
+import browserHistory from '../../browserHistory';
 
 type AppProps = {
   filmInfo: FilmInfo;
@@ -21,12 +23,12 @@ type AppProps = {
 
 function App({filmInfo, promoFilmInfo, films, user, currentFilm}: AppProps) {
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
-        <Route path={AppRoute.Main} element={<WelcomePage promoFilmInfo={promoFilmInfo} films={films} user={user}/>}/>
+        <Route path={AppRoute.Main} element={<WelcomePage promoFilmInfo={promoFilmInfo} user={user}/>}/>
         <Route path={AppRoute.SignIn} element={<LoginPage/>}/>
         <Route path={AppRoute.MyList} element={
-          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+          <PrivateRoute>
             <MyListPage user={user}/>
           </PrivateRoute>
         }
@@ -36,7 +38,7 @@ function App({filmInfo, promoFilmInfo, films, user, currentFilm}: AppProps) {
         <Route path={AppRoute.Player} element={<Player currentFilm={currentFilm}/>}/>
         <Route path="*" element={<Page404/>}/>
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 
