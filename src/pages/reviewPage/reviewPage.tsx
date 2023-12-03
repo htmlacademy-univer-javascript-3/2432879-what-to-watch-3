@@ -2,20 +2,21 @@ import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import CommentSendForm from '../../components/commentSendForm/commentSendForm';
 import {User} from '../../types/user';
-import {Currentfilm} from '../../types/films';
 import Header from '../../components/header/header';
+import {useAppSelector} from '../../hooks';
 
 type ReviewPageProps = {
   user: User;
-  currentFilm: Currentfilm;
 }
 
-function ReviewPage({user, currentFilm}: ReviewPageProps) {
+function ReviewPage({user}: ReviewPageProps) {
+  const currentFilm = useAppSelector((state) => state.currentFilm);
+
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={currentFilm.image} alt={currentFilm.name}/>
+          <img src={currentFilm.backgroundImage} alt={currentFilm.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -34,7 +35,7 @@ function ReviewPage({user, currentFilm}: ReviewPageProps) {
         </Header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={currentFilm.backgroundPoster} alt="The Grand Budapest Hotel poster" width="218" height="327"/>
+          <img src={currentFilm.posterImage} alt={`${currentFilm.name} poster`} width="218" height="327"/>
         </div>
       </div>
 

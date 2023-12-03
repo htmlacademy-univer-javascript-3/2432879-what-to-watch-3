@@ -1,5 +1,4 @@
 
-
 function Reviews() {
   return (
     <div className="film-card__reviews film-card__row">

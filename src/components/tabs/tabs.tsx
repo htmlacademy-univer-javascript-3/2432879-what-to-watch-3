@@ -1,16 +1,13 @@
 import {Link} from 'react-router-dom';
-import {FilmInfo} from '../../types/films';
 import Overview from '../overview/overview';
 import Details from '../details/details';
 import Reviews from '../reviews/reviews';
 import {useState} from 'react';
 import cn from 'classnames';
+import {useAppSelector} from '../../hooks';
 
-type TabsProps = {
-  filmInfo: FilmInfo;
-}
-
-function Tabs({filmInfo}: TabsProps) {
+function Tabs() {
+  const filmInfo = useAppSelector((state) => state.currentFilm);
 
   const [tab, setTab] = useState<'overview' | 'details' | 'reviews'>('overview');
 
@@ -32,7 +29,7 @@ function Tabs({filmInfo}: TabsProps) {
 
       {tab === 'overview' && <Overview filmInfo={filmInfo}/>}
 
-      {tab === 'details' && <Details/>}
+      {tab === 'details' && <Details filmInfo={filmInfo}/>}
 
       {tab === 'reviews' && <Reviews/>}
     </div>

@@ -14,7 +14,7 @@ function GenersList() {
     if (!genres.includes(genre)){
       genres.push(genre);
     }
-  }), [filmsList]);
+  }), [genres, filmsList]);
 
   const genreClickHandle = (genre: string) => {
     dispatch(changeGenre(genre));

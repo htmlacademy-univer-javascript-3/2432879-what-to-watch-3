@@ -42,3 +42,9 @@ export type FilmInfo = {
   released: number;
   isFavorite: false;
 }
+
+export type ChangeStatusData = {
+  id: string;
+  status: number;
+}
+
