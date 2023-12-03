@@ -8,9 +8,7 @@ function Player({currentFilm}: PlayerProps) {
   return (
     <div className="player">
       <video autoPlay src={'video'} className="player__video" poster={currentFilm.playerPoster}></video>
-
       <button type="button" className="player__exit">Exit</button>
-
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
