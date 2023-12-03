@@ -1,6 +1,7 @@
 import {Film} from '../../types/films';
 import FilmCard from '../filmCard/FilmCard';
 import {useEffect, useRef, useState} from 'react';
+import {useAppDispatch} from '../../hooks';
 
 type FilmsListProps = {
   films: Film[];
@@ -9,6 +10,7 @@ type FilmsListProps = {
 
 function FilmsList({films, quantityFilmsList}: FilmsListProps) {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const dispatch = useAppDispatch();
 
   const [selectedFilm, setSelectedFilm] = useState({
     id: '',
@@ -30,11 +32,12 @@ function FilmsList({films, quantityFilmsList}: FilmsListProps) {
   };
 
   useEffect(() => {
+    // dispatch(saveIdCurrentFilm(selectedFilm.id));
     timeoutRef.current = setTimeout(() => {
       setIsPlay(true);
     }, 1000);
     return () => clearTimeout(timeoutRef.current as NodeJS.Timeout);
-  }, [selectedFilm]);
+  }, [dispatch, selectedFilm]);
 
   return (
     <div className="catalog__films-list">

@@ -5,22 +5,23 @@ import FilmsList from '../../components/filmsList/FilmsList';
 import {User} from '../../types/user';
 import Header from '../../components/header/header';
 import FilmCardButtons from '../../components/buttons/filmCardButton/filmCardButtons';
-import {Film, FilmInfo} from '../../types/films';
 import Tabs from '../../components/tabs/tabs';
+import {useAppSelector} from '../../hooks';
 
 type FilmPageProps = {
-  filmInfo: FilmInfo;
   user: User;
-  films: Film[];
 }
 
-function FilmPage({films, user, filmInfo}: FilmPageProps) {
+function FilmPage({user}: FilmPageProps) {
+  const currentFilmInfo = useAppSelector((state) => state.currentFilm);
+  const similarFilmsList = useAppSelector((state) => state.similarFilmsList);
+
   return (
     <div>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={filmInfo.backgroundImage} alt={filmInfo.name}/>
+            <img src={currentFilmInfo.backgroundImage} alt={currentFilmInfo.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -28,10 +29,10 @@ function FilmPage({films, user, filmInfo}: FilmPageProps) {
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{filmInfo.name}</h2>
+              <h2 className="film-card__title">{currentFilmInfo.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{filmInfo.genre}</span>
-                <span className="film-card__year">{filmInfo.released}</span>
+                <span className="film-card__genre">{currentFilmInfo.genre}</span>
+                <span className="film-card__year">{currentFilmInfo.released}</span>
               </p>
 
               <FilmCardButtons>
@@ -44,10 +45,10 @@ function FilmPage({films, user, filmInfo}: FilmPageProps) {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={filmInfo.posterImage} alt={`${filmInfo.name} poster`} width="218" height="327"/>
+              <img src={currentFilmInfo.posterImage} alt={`${currentFilmInfo.name} poster`} width="218" height="327"/>
             </div>
 
-            <Tabs filmInfo={filmInfo}/>
+            <Tabs/>
 
           </div>
         </div>
@@ -56,7 +57,7 @@ function FilmPage({films, user, filmInfo}: FilmPageProps) {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmsList quantityFilmsList={4} films={films}/>
+          <FilmsList quantityFilmsList={4} films={similarFilmsList}/>
         </section>
 
         <Footer/>

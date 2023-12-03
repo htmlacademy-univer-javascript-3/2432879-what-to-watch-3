@@ -2,8 +2,15 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state';
 import {AxiosInstance} from 'axios';
 import {APIRoute, AppRoute, AuthorizationStatus} from '../const';
-import {getFilmsList, redirectRoute, requireAuthorization} from './action';
-import {Film} from '../types/films';
+import {
+  getCurrentFilm, getFavoriteFilms,
+  getFilmsList,
+  getPromoFilm,
+  getSimilarFilmsList,
+  redirectRoute,
+  requireAuthorization
+} from './action';
+import {Film, FilmInfo, PromoFilm} from '../types/films';
 import {AuthData} from '../types/authData';
 import {dropToken, saveToken} from '../services/token';
 import {UserData} from '../types/userData';
@@ -17,6 +24,52 @@ export const fetchFilmsListAction = createAsyncThunk<void, undefined, {
   async(_arg, {dispatch, extra: api}) => {
     const {data} = await api.get<Film[]>(APIRoute.Films);
     dispatch(getFilmsList(data));
+  }
+);
+
+export const fetchCurrentFilm = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchCurrentFilm',
+  async (filmId, {dispatch, extra: api}) => {
+    const {data} = await api.get<FilmInfo>(`${APIRoute.Films}/${filmId}`);
+    dispatch(getCurrentFilm(data));
+  }
+);
+export const fetchSimilarFilmsList = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchSimilarFilmsList',
+  async (filmId, {dispatch, extra: api}) => {
+    const {data} = await api.get<Film[]>(`${APIRoute.Films}/${filmId}/similar`);
+    dispatch(getSimilarFilmsList(data));
+  }
+);
+
+export const fetchPromoFilm = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchPromoFilm',
+  async(_arg, {dispatch, extra: api}) => {
+    const {data} = await api.get<PromoFilm>(APIRoute.Promo);
+    dispatch(getPromoFilm(data));
+  }
+);
+export const fetchFavoriteFilms = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchFavoriteFilms',
+  async(_arg, {dispatch, extra: api}) => {
+    const {data} = await api.get<Film[]>(APIRoute.Favorite);
+    dispatch(getFavoriteFilms(data));
   }
 );
 
