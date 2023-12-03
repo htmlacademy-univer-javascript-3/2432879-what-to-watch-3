@@ -32,7 +32,6 @@ function FilmsList({films, quantityFilmsList}: FilmsListProps) {
   };
 
   useEffect(() => {
-    // dispatch(saveIdCurrentFilm(selectedFilm.id));
     timeoutRef.current = setTimeout(() => {
       setIsPlay(true);
     }, 1000);
