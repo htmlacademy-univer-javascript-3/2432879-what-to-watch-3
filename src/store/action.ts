@@ -1,6 +1,8 @@
 import {createAction} from '@reduxjs/toolkit';
-import {Film, FilmInfo, PromoFilm} from '../types/films';
+import {FavoriteFilmData, Film, FilmInfo, PromoFilm} from '../types/films';
 import {AppRoute, AuthorizationStatus} from '../const';
+import {UserData} from '../types/userData';
+import {Comment} from '../types/comments';
 
 export const changeGenre = createAction<string>('filmsList/changeGenre');
 export const getFilmsList = createAction<Film[]>('filmsList/getFilmsList');
@@ -12,5 +14,7 @@ export const getCurrentFilm = createAction<FilmInfo>('films/getCurrentFilm');
 export const getSimilarFilmsList = createAction<Film[]>('films/getSimilarFilmsList');
 export const getPromoFilm = createAction<PromoFilm>('films/getPromoFilm');
 export const getFavoriteFilms = createAction<Film[]>('films/getFavoriteFilms');
-export const addFavoriteFilm = createAction<string>('films/addFavoriteFilm');
-// export const saveIdCurrentFilm = createAction<string>('films/saveIdCurrentFilm');
+export const getUserProfile = createAction<UserData>('user/getUserProfile');
+export const getComments = createAction<Comment[]>('films/getComments');
+export const addComment = createAction<Comment[]>('films/addComment');
+export const addFavoriteFilm = createAction<FavoriteFilmData>('films/addFavoriteFilm');

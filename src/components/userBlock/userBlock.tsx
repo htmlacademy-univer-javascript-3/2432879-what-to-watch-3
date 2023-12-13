@@ -1,16 +1,18 @@
-import {User} from '../../types/user';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {Link} from 'react-router-dom';
-import {logoutAction} from '../../store/apiActions';
+import {Link, useNavigate} from 'react-router-dom';
+import {checkAuthAction, logoutAction} from '../../store/apiActions';
+import {useEffect} from 'react';
 
-type UserBlockProps = {
-  user: User;
-}
-
-function UserBlock({user}: UserBlockProps) {
+function UserBlock() {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const userProfile = useAppSelector((state) => state.userProfile);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(checkAuthAction());
+  }, [dispatch]);
 
   return (
     <ul className="user-block">
@@ -18,7 +20,7 @@ function UserBlock({user}: UserBlockProps) {
         <>
           <li className="user-block__item">
             <div className="user-block__avatar">
-              <img src={user.avatarImg} alt="User avatar" width="63" height="63"/>
+              <img onClick={() => navigate(AppRoute.MyList)} src={userProfile.avatarUrl} alt="User avatar" width="63" height="63"/>
             </div>
           </li>
           <li className="user-block__item">

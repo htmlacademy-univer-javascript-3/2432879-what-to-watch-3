@@ -1,6 +1,5 @@
 import Footer from '../../components/footer/Footer';
 import FilmsList from '../../components/filmsList/FilmsList';
-import {User} from '../../types/user';
 import Header from '../../components/header/header';
 import FilmCardButtons from '../../components/buttons/filmCardButton/filmCardButtons';
 import GenersList from '../../components/genresList/genersList';
@@ -11,18 +10,21 @@ import { resetShownFilms} from '../../store/action';
 import {useLocation} from 'react-router-dom';
 import {filmsByGenre} from '../../utils/filmsByGenre';
 import Spinner from '../../components/spinner/spinner';
+import {fetchCurrentFilm} from '../../store/apiActions';
 
-type WelcomePageProps = {
-  user: User;
-}
-
-function WelcomePage({user}: WelcomePageProps) {
+function WelcomePage() {
   const films = useAppSelector((state) => state.filmsList);
   const genreActive = useAppSelector((state) => state.genre);
   const shownFilms = useAppSelector((state) => state.shownFilms);
   const promoFilm = useAppSelector((state) => state.promoFilm);
   const dispatch = useAppDispatch();
   const location = useLocation();
+
+  useEffect(() => {
+    if (promoFilm.id) {
+      dispatch(fetchCurrentFilm(promoFilm.id));
+    }
+  }, [promoFilm]);
 
   useEffect(() => {
     dispatch(resetShownFilms());
@@ -37,7 +39,7 @@ function WelcomePage({user}: WelcomePageProps) {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <Header user={user} className={'film-card__head'}/>
+        <Header className={'film-card__head'}/>
 
         <div className="film-card__wrap">
           <div className="film-card__info">

@@ -1,15 +1,28 @@
-import {useAppSelector} from '../../../hooks';
-import {useNavigate} from 'react-router-dom';
-import {AppRoute} from '../../../const';
+import {useAppDispatch, useAppSelector} from '../../../hooks';
+import {useEffect, useState} from 'react';
+import {changeFavoriteFilm, fetchFavoriteFilms} from '../../../store/apiActions';
+import {useParams} from 'react-router-dom';
 
 function ListButton() {
+  const dispatch = useAppDispatch();
+  const {id} = useParams();
   const currentFilm = useAppSelector((state) => state.currentFilm);
   const favoriteFilms = useAppSelector((state) => state.favoriteFilms);
-  const navigate = useNavigate();
+  const promoFilm = useAppSelector((state) => state.promoFilm);
+  const [added, setAdded] = useState(currentFilm.isFavorite);
+
+  useEffect(() => {
+    setAdded(currentFilm.isFavorite);
+    dispatch(fetchFavoriteFilms());
+  }, [currentFilm, promoFilm]);
+
+  const changeIsFavorite = () => {
+    dispatch(changeFavoriteFilm({filmId: id ? id : promoFilm.id, isFavorite: added ? '0' : '1'}));
+  };
 
   return (
-    <button onClick={() => navigate(AppRoute.MyList)} className="btn btn--list film-card__button" type="button">
-      {currentFilm.isFavorite ?
+    <button onClick={changeIsFavorite} className="btn btn--list film-card__button" type="button">
+      {added ?
         <svg viewBox="0 0 18 14" width="18" height="14">
           <use xlinkHref="#in-list"></use>
         </svg> :

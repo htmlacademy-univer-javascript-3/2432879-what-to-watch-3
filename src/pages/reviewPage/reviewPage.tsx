@@ -1,15 +1,10 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import CommentSendForm from '../../components/commentSendForm/commentSendForm';
-import {User} from '../../types/user';
 import Header from '../../components/header/header';
 import {useAppSelector} from '../../hooks';
 
-type ReviewPageProps = {
-  user: User;
-}
-
-function ReviewPage({user}: ReviewPageProps) {
+function ReviewPage() {
   const currentFilm = useAppSelector((state) => state.currentFilm);
 
   return (
@@ -21,7 +16,7 @@ function ReviewPage({user}: ReviewPageProps) {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <Header user={user}>
+        <Header>
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">

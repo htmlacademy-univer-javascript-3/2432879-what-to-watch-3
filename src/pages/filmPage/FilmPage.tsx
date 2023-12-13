@@ -1,20 +1,26 @@
 import Footer from '../../components/footer/Footer';
-import {AppRoute} from '../../const';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import FilmsList from '../../components/filmsList/FilmsList';
-import {User} from '../../types/user';
 import Header from '../../components/header/header';
 import FilmCardButtons from '../../components/buttons/filmCardButton/filmCardButtons';
 import Tabs from '../../components/tabs/tabs';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {fetchCurrentFilm, fetchSimilarFilmsList} from '../../store/apiActions';
+import {useEffect} from 'react';
 
-type FilmPageProps = {
-  user: User;
-}
+function FilmPage() {
+  const {id} = useParams();
+  const dispatch = useAppDispatch();
 
-function FilmPage({user}: FilmPageProps) {
   const currentFilmInfo = useAppSelector((state) => state.currentFilm);
   const similarFilmsList = useAppSelector((state) => state.similarFilmsList);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchCurrentFilm(id));
+      dispatch(fetchSimilarFilmsList(id));
+    }
+  }, [dispatch, id]);
 
   return (
     <div>
@@ -25,7 +31,7 @@ function FilmPage({user}: FilmPageProps) {
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
-          <Header user={user} className={'film-card__head'}/>
+          <Header className={'film-card__head'}/>
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
@@ -36,7 +42,7 @@ function FilmPage({user}: FilmPageProps) {
               </p>
 
               <FilmCardButtons>
-                <Link to={AppRoute.AddReview} className="btn film-card__button">Add review</Link>
+                <Link to={`/films/${currentFilmInfo.id}/review`} className="btn film-card__button">Add review</Link>
               </FilmCardButtons>
             </div>
           </div>

@@ -8,31 +8,29 @@ import Page404 from '../../pages/page404/page404';
 import {AppRoute} from '../../const';
 import PrivateRoute from '../privateRoute/privateRoute';
 import MyListPage from '../../pages/myListPage/MyListPage';
-import {Currentfilm} from '../../types/films';
-import {User} from '../../types/user';
 import HistoryRouter from '../historyRoute/historyRouter';
 import browserHistory from '../../browserHistory';
 
-type AppProps = {
-  user: User;
-  currentFilm: Currentfilm;
-}
-
-function App({user, currentFilm}: AppProps) {
+function App() {
   return (
     <HistoryRouter history={browserHistory}>
       <Routes>
-        <Route path={AppRoute.Main} element={<WelcomePage user={user}/>}/>
+        <Route path={AppRoute.Main} element={<WelcomePage/>}/>
         <Route path={AppRoute.SignIn} element={<LoginPage/>}/>
         <Route path={AppRoute.MyList} element={
           <PrivateRoute>
-            <MyListPage user={user}/>
+            <MyListPage/>
           </PrivateRoute>
         }
         />
-        <Route path={AppRoute.Film} element={<FilmPage user={user}/>}/>
-        <Route path={AppRoute.AddReview} element={<ReviewPage user={user}/>}/>
-        <Route path={AppRoute.Player} element={<Player currentFilm={currentFilm}/>}/>
+        <Route path={AppRoute.Film} element={<FilmPage/>}/>
+        <Route path={AppRoute.AddReview} element={
+          <PrivateRoute>
+            <ReviewPage/>
+          </PrivateRoute>
+        }
+        />
+        <Route path={AppRoute.Player} element={<Player/>}/>
         <Route path="*" element={<Page404/>}/>
       </Routes>
     </HistoryRouter>

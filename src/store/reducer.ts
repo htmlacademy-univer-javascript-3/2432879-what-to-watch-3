@@ -1,14 +1,16 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {
-  changeGenre,
+  changeGenre, getComments,
   getCurrentFilm, getFavoriteFilms,
-  getFilmsList, getPromoFilm, getSimilarFilmsList,
+  getFilmsList, getPromoFilm, getSimilarFilmsList, getUserProfile,
   requireAuthorization,
   resetShownFilms,
   showMoreFilms
 } from './action';
 import {Film, FilmInfo, PromoFilm} from '../types/films';
 import {AuthorizationStatus} from '../const';
+import {UserData} from '../types/userData';
+import {Comment} from '../types/comments';
 
 type InitialState = {
   genre: string;
@@ -20,6 +22,8 @@ type InitialState = {
   similarFilmsList: Film[];
   promoFilm: PromoFilm;
   favoriteFilms: Film[];
+  userProfile: UserData;
+  comments: Comment[];
 }
 
 const initialState: InitialState = {
@@ -32,6 +36,8 @@ const initialState: InitialState = {
   similarFilmsList: [],
   promoFilm: <PromoFilm>{},
   favoriteFilms: [],
+  userProfile: <UserData>{},
+  comments: [],
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -63,6 +69,12 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(getFavoriteFilms, (state, action) => {
       state.favoriteFilms = action.payload;
+    })
+    .addCase(getUserProfile, (state, action) => {
+      state.userProfile = action.payload;
+    })
+    .addCase(getComments, (state, action) => {
+      state.comments = action.payload;
     });
 });
 
