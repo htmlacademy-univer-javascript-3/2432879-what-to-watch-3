@@ -45,7 +45,11 @@ export const createAPI = (): AxiosInstance => {
     (error: AxiosError<DetailMessageType>) => {
       if (error.response && shouldDisplayError(error.response)) {
         const detailMessage = (error.response.data);
-        toast.warn(detailMessage.message);
+        if (detailMessage.message === 'Header Token is not correct') {
+          toast.warn('Войдите в аккаунт');
+        } else {
+          toast.warn(detailMessage.message);
+        }
       }
       if (error.response && shouldUnauthorizedError()) {
         dropToken();

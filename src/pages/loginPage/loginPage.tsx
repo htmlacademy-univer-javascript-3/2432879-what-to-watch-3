@@ -1,4 +1,4 @@
-import Footer from '../../components/footer/Footer';
+import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import {FormEvent, useRef} from 'react';
 import {useAppDispatch} from '../../hooks';

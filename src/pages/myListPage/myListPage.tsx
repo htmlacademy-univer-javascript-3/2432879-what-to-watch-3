@@ -1,17 +1,21 @@
-import Footer from '../../components/footer/Footer';
-import FilmsList from '../../components/filmsList/FilmsList';
+import Footer from '../../components/footer/footer';
+import FilmsList from '../../components/filmsList/filmsList';
 import Header from '../../components/header/header';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {useEffect} from 'react';
 import {fetchFavoriteFilms} from '../../store/apiActions';
+import {AuthorizationStatus} from '../../const';
 
 function MyListPage() {
   const dispatch = useAppDispatch();
   const favoriteFilms = useAppSelector((state) => state.favoriteFilms);
+  const currentAuthorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   useEffect(() => {
-    dispatch(fetchFavoriteFilms());
-  }, [dispatch]);
+    if (currentAuthorizationStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavoriteFilms());
+    }
+  }, [dispatch, currentAuthorizationStatus]);
 
   return (
     <div className="user-page">

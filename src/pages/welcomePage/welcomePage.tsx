@@ -1,5 +1,5 @@
-import Footer from '../../components/footer/Footer';
-import FilmsList from '../../components/filmsList/FilmsList';
+import Footer from '../../components/footer/footer';
+import FilmsList from '../../components/filmsList/filmsList';
 import Header from '../../components/header/header';
 import FilmCardButtons from '../../components/buttons/filmCardButton/filmCardButtons';
 import GenersList from '../../components/genresList/genersList';
@@ -24,7 +24,7 @@ function WelcomePage() {
     if (promoFilm.id) {
       dispatch(fetchCurrentFilm(promoFilm.id));
     }
-  }, [promoFilm]);
+  }, [promoFilm, dispatch]);
 
   useEffect(() => {
     dispatch(resetShownFilms());

@@ -2,10 +2,12 @@ import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {useEffect, useState} from 'react';
 import {changeFavoriteFilm, fetchFavoriteFilms} from '../../../store/apiActions';
 import {useParams} from 'react-router-dom';
+import {AuthorizationStatus} from '../../../const';
 
 function ListButton() {
   const dispatch = useAppDispatch();
   const {id} = useParams();
+  const currentAuthorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const currentFilm = useAppSelector((state) => state.currentFilm);
   const favoriteFilms = useAppSelector((state) => state.favoriteFilms);
   const promoFilm = useAppSelector((state) => state.promoFilm);
@@ -13,8 +15,10 @@ function ListButton() {
 
   useEffect(() => {
     setAdded(currentFilm.isFavorite);
-    dispatch(fetchFavoriteFilms());
-  }, [currentFilm, promoFilm]);
+    if (currentAuthorizationStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavoriteFilms());
+    }
+  }, [currentFilm, promoFilm, dispatch, currentAuthorizationStatus]);
 
   const changeIsFavorite = () => {
     dispatch(changeFavoriteFilm({filmId: id ? id : promoFilm.id, isFavorite: added ? '0' : '1'}));

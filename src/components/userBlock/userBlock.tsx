@@ -1,18 +1,13 @@
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {Link, useNavigate} from 'react-router-dom';
-import {checkAuthAction, logoutAction} from '../../store/apiActions';
-import {useEffect} from 'react';
+import {logoutAction} from '../../store/apiActions';
 
 function UserBlock() {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const userProfile = useAppSelector((state) => state.userProfile);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    dispatch(checkAuthAction());
-  }, [dispatch]);
 
   return (
     <ul className="user-block">

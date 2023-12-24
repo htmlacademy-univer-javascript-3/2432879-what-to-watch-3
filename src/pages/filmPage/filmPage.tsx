@@ -1,6 +1,6 @@
-import Footer from '../../components/footer/Footer';
+import Footer from '../../components/footer/footer';
 import {Link, useParams} from 'react-router-dom';
-import FilmsList from '../../components/filmsList/FilmsList';
+import FilmsList from '../../components/filmsList/filmsList';
 import Header from '../../components/header/header';
 import FilmCardButtons from '../../components/buttons/filmCardButton/filmCardButtons';
 import Tabs from '../../components/tabs/tabs';
