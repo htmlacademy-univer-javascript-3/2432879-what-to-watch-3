@@ -40,11 +40,11 @@ export type FilmInfo = {
   runTime: number;
   genre: string;
   released: number;
-  isFavorite: false;
+  isFavorite: boolean;
 }
 
-export type ChangeStatusData = {
-  id: string;
-  status: number;
+export type FavoriteFilmData = {
+  filmId: string;
+  isFavorite: string;
 }
 

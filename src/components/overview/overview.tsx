@@ -5,12 +5,26 @@ type OverviewProps = {
 }
 
 function Overview({filmInfo}: OverviewProps) {
+  let ratingLevel;
+
+  if (filmInfo.rating < 3) {
+    ratingLevel = 'Bad';
+  } else if (filmInfo.rating < 5) {
+    ratingLevel = 'Normal';
+  } else if (filmInfo.rating < 8) {
+    ratingLevel = 'Good';
+  } else if (filmInfo.rating < 10) {
+    ratingLevel = 'Very good';
+  } else {
+    ratingLevel = 'Awesome';
+  }
+
   return (
     <>
       <div className="film-rating">
         <div className="film-rating__score">{filmInfo.rating}</div>
         <p className="film-rating__meta">
-          <span className="film-rating__level">Very good</span>
+          <span className="film-rating__level">{ratingLevel}</span>
           <span className="film-rating__count">{filmInfo.scoresCount}</span>
         </p>
       </div>

@@ -19,5 +19,6 @@ export const APIRoute = {
   Logout: '/logout',
   Promo: '/promo',
   Favorite: '/favorite',
+  Comments: '/comments',
 };
 

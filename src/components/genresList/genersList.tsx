@@ -2,7 +2,6 @@ import {Link} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import cn from 'classnames';
 import {changeGenre} from '../../store/action';
-import {useMemo} from 'react';
 
 function GenersList() {
   const genreActive = useAppSelector((state) => state.genre);
@@ -10,11 +9,11 @@ function GenersList() {
   const dispatch = useAppDispatch();
   const genres = ['All genres'];
 
-  useMemo(() => filmsList.forEach(({genre}) => {
+  filmsList.forEach(({genre}) => {
     if (!genres.includes(genre)){
       genres.push(genre);
     }
-  }), [genres, filmsList]);
+  });
 
   const genreClickHandle = (genre: string) => {
     dispatch(changeGenre(genre));

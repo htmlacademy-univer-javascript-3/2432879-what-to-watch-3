@@ -1,7 +1,6 @@
 import {Film} from '../../types/films';
-import FilmCard from '../filmCard/FilmCard';
+import FilmCard from '../filmCard/filmCard';
 import {useEffect, useRef, useState} from 'react';
-import {useAppDispatch} from '../../hooks';
 
 type FilmsListProps = {
   films: Film[];
@@ -10,24 +9,17 @@ type FilmsListProps = {
 
 function FilmsList({films, quantityFilmsList}: FilmsListProps) {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const dispatch = useAppDispatch();
 
-  const [selectedFilm, setSelectedFilm] = useState({
-    id: '',
-    name: '',
-    previewImage: '',
-    previewVideoLink: '',
-    genre: ''
-  });
+  const [selectedFilmID, setSelectedFilmID] = useState('');
 
   const [isPlay, setIsPlay] = useState(false);
 
-  const onMouseEnterHandle = ({id, previewImage, name, previewVideoLink, genre}: Film) => {
-    setSelectedFilm({...selectedFilm, id: id, name: name, previewImage: previewImage, previewVideoLink: previewVideoLink, genre: genre});
+  const onMouseEnterHandle = ({id}: Film) => {
+    setSelectedFilmID(id);
   };
 
   const onMouseLeaveEnter = () => {
-    setSelectedFilm({...selectedFilm, id: '', name: '', previewImage: '', previewVideoLink: '', genre: ''});
+    setSelectedFilmID('');
     setIsPlay(false);
   };
 
@@ -36,7 +28,7 @@ function FilmsList({films, quantityFilmsList}: FilmsListProps) {
       setIsPlay(true);
     }, 1000);
     return () => clearTimeout(timeoutRef.current as NodeJS.Timeout);
-  }, [dispatch, selectedFilm]);
+  }, [selectedFilmID]);
 
   return (
     <div className="catalog__films-list">
@@ -50,7 +42,7 @@ function FilmsList({films, quantityFilmsList}: FilmsListProps) {
           previewImage={previewImage}
           previewVideoLink={previewVideoLink}
           isPlay={isPlay}
-          selectedCard={selectedFilm.id}
+          selectedCard={selectedFilmID}
         />
       ))}
     </div>
